@@ -1,0 +1,17 @@
+{
+  "name": "node_learner",
+  "version": "1.0.0",
+  "description": "",
+  "main": "hello.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "author": "Shuyang Lin",
+  "license": "ISC",
+  "dependencies": {
+    "slugify": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
