@@ -36,6 +36,7 @@ const tourSchema = new mongoose.Schema(
       default: 4.5,
       min: [1, 'Rating must be above 1.0'],
       max: [5, 'Rating must be below 5.0'],
+      set: (val) => Math.round(val * 10) / 10, // 4.66666, 46.6666, 47, 4.7
     },
     ratingQuantity: {
       type: Number,
@@ -120,6 +121,11 @@ const tourSchema = new mongoose.Schema(
   }
 );
 
+// tourSchema.index({ price: 1 });
+tourSchema.index({ price: 1, ratingAverage: -1 });
+tourSchema.index({ slug: 1 });
+tourSchema.index({ startLocation: '2dsphere' });
+
 tourSchema.virtual('durationWeeks').get(function () {
   return this.duration / 7;
 });
@@ -165,11 +171,11 @@ tourSchema.pre(/^find/, function (next) {
   next();
 });
 
-tourSchema.post(/^find/, function (doc, next) {
-  console.log(`Query took ${Date.now() - this.start} milliseconds!`);
-  console.log(doc);
-  next();
-});
+// tourSchema.post(/^find/, function (doc, next) {
+//   console.log(`Query took ${Date.now() - this.start} milliseconds!`);
+//   console.log(doc);
+//   next();
+// });
 
 tourSchema.pre(/^find/, function (next) {
   this.populate({
@@ -182,7 +188,9 @@ tourSchema.pre(/^find/, function (next) {
 
 //Aggregation middleware
 tourSchema.pre('aggregate', function (next) {
-  this.pipeline().unshift({ $match: { secretTour: { $ne: true } } });
+  if (!this.pipeline()[0].$geoNear) {
+    this.pipeline().unshift({ $match: { secretTour: { $ne: true } } });
+  }
   console.log(this.pipeline());
   next();
 });
