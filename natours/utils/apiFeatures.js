@@ -33,7 +33,7 @@ class APIFeatures {
     if (this.queryString.sort) {
       const sortBy = this.queryString.sort.split(',').join(' ');
       this.query = this.query.sort(sortBy);
-      // sort('price ratingAverage')
+      // sort('price ratingsAverage')
     } else {
       this.query = this.query.sort('-createdAt');
     }

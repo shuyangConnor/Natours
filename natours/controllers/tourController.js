@@ -67,7 +67,7 @@ exports.resizeTourImages = catchAsync(async (req, res, next) => {
 
 exports.aliasTopTours = (req, res, next) => {
   req.query.limit = '5';
-  req.query.sort = '-ratingAverage,price';
+  req.query.sort = '-ratingsAverage,price';
   req.query.fields = 'name,price,ratingsAverage,summary,difficulty';
   next();
 };
@@ -86,7 +86,7 @@ exports.getTourStats = catchAsync(async (req, res) => {
   const stats = await Tour.aggregate([
     {
       $match: {
-        ratingAverage: { $gte: 4.5 },
+        ratingsAverage: { $gte: 4.5 },
       },
     },
     {
@@ -96,10 +96,10 @@ exports.getTourStats = catchAsync(async (req, res) => {
           $sum: 1,
         },
         numRatings: {
-          $sum: '$ratingQuantity',
+          $sum: '$ratingsQuantity',
         },
         avgRating: {
-          $avg: '$ratingAverage',
+          $avg: '$ratingsAverage',
         },
         avgPrice: {
           $avg: '$price',
