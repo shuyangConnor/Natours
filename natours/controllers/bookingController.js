@@ -2,6 +2,13 @@ const catchAsync = require('../utils/catchAsync');
 const Tour = require('../models/tourModel');
 const Booking = require('../models/bookingModel');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const {
+  deleteOne,
+  updateOne,
+  createOne,
+  getOne,
+  getAll,
+} = require('./handlerFactory');
 
 exports.getCheckoutSession = catchAsync(async (req, res, next) => {
   // 1) Get the currently booked tour
@@ -56,3 +63,9 @@ exports.createBookingCheckout = catchAsync(async (req, res, next) => {
 
   res.redirect(req.originalUrl.split('?')[0]);
 });
+
+exports.deleteBooking = deleteOne(Booking);
+exports.updateBooking = updateOne(Booking);
+exports.createBooking = createOne(Booking);
+exports.getBooking = getOne(Booking);
+exports.getAllBookings = getAll(Booking);
