@@ -1,2 +1,3 @@
 /natours/node_modules/
 *.env
+/natours/.cache/
