@@ -4,6 +4,8 @@
 
 Natours is a full-stack web application that empowers users to book tours effortlessly. It provides a seamless experience for users to explore and book various tours, leveraging modern technologies for a robust and scalable solution.
 
+![Real-time Messaging](natours/screenshots/homepage.png)
+
 ## Features
 
 - **Express.js Backend**: Built with Express.js, Natours offers a robust backend with over 30 distinct RESTful APIs and 5 subscription services.
@@ -22,6 +24,17 @@ Natours is a full-stack web application that empowers users to book tours effort
 - Stripe
 - HTML, CSS, JavaScript
 - Pug (formerly Jade) templating engine
+
+## Visual Overview
+
+### You can browse different tours.
+
+![Real-time Messaging](natours/screenshots/page.png)
+
+### You can check out the geographical information powered by Mapbox API, and book tour with Stripe.
+
+![Real-time Messaging](natours/screenshots/mapbox.png)
+
 
 ## Installation
 
@@ -47,16 +60,11 @@ Natours is deployed and hosted on the Heroku cloud platform for seamless access 
 
 ## Contributing
 
-Contributions are welcome! If you'd like to contribute to Natours, please fork the repository and create a pull request with your proposed changes.
+Contributions are welcome! If you find any bugs or have suggestions for improvements, feel free to open an issue or submit a pull request.
 
-## License
+1. Fork the repository.
+2. Create your feature branch (`git checkout -b feature/YourFeature`).
+3. Commit your changes (`git commit -am 'Add some feature'`).
+4. Push to the branch (`git push origin feature/YourFeature`).
 
-This project is licensed under the [ISC License](https://opensource.org/licenses/ISC).
-
-## Author
-
-Natours is developed and maintained by Shuyang Lin.
-
-## Acknowledgments
-
-Special thanks to the developers of the technologies and libraries used in this project for their contributions.
+Your feedback and contributions are greatly appreciated!!
